@@ -2,26 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: none;
+    scrollbar-color: #d3caca #ffffff;
   }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #d3caca;
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+  }
+
+.gradient {
+  @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.photo_change {
+  background: url(../../public/images/home_photo_1.png) no-repeat center;
+  background-size: cover;
+  min-width:20rem;
+  min-height:20rem;
+  animation: animate 7s ease-in-out infinite alternate-reverse 5000ms;
+}
+
+.photo_change::before {
+  content: "";
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url(../../public/images/home_photo_1.png) no-repeat center;
+  background-size: cover;
+  animation: animate 3s ease-in-out infinite alternate-reverse;
+  z-index: -1;
+}
+
+@keyframes animate {
+  0%{
+    background-image: url(../../public/images/home_photo_2.png);
+  }
+ 
 }
