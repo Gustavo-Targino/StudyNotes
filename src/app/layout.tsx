@@ -2,11 +2,12 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Roboto_Flex as Roboto } from 'next/font/google'
 import Topo from '@/components/Topo/Topo'
+import Footer from '@/components/Footer/Footer'
 const roboto = Roboto({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'To.do',
-  description: 'Seu organizador de tarefas',
+  title: 'StudyNotes',
+  description: 'Seu organizador de estudos',
 }
 
 
@@ -17,10 +18,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={`${roboto.className} text-white bg-stone-800`}>
+      <body className={`${roboto.className} bg-stone-800 text-white`}>
           <Topo/>
+
           {children}
-          </body>
+
+          <Footer/>
+        </body>
     </html>
   )
 }

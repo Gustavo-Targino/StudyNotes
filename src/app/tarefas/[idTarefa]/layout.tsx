@@ -1,9 +1,6 @@
 import { FetchException, TarefasService } from '@/TarefasService/TarefasService'
 import HeaderTarefa from './HeaderTarefa'
 import FetchError from '@/components/FetchError/FetchError'
-import { ITarefas } from '@/types/ITarefa'
-
-import { notFound } from 'next/navigation'
 
 const getData = async(id:string) => {
   return TarefasService.getById(id)
@@ -21,7 +18,7 @@ export async function generateMetadata({params}:{params:{idTarefa:string}}) {
     }
   } else {
     return {
-      title:`To.do - ${data.nome}`
+      title:`Notes - ${data.nome}`
     }
  } 
 

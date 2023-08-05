@@ -10,7 +10,7 @@ export default function Home() {
         </div>
         <div>
           <p>Esta é sua aplicação de gerenciamento de estudos.</p>
-          <p>Cadastre linguagens, trace metas, acompanhe o seu desenvolvimento.</p>
+          <p>Cadastre linguagens, faça anotações, acompanhe o seu desenvolvimento.</p>
         </div>
         <Link href='/tarefas' className='self-center'>
         <button className='font-bold uppercase text-sm hover:underline hover:underline-offset-8'>

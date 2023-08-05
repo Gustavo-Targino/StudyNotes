@@ -13,6 +13,7 @@ import { ValidaTexto } from '@/Functions/ValidaTexto'
 import Alert from '@/components/Alert/Alert'
 import FetchError from "@/components/FetchError/FetchError"
 import React from 'react'
+import { formataData } from "@/Functions/FormataData"
 
 interface Props {
     props: ITarefas[] | FetchException,
@@ -46,16 +47,6 @@ export default function AddTarefa({props}:Props) {
         setOpen(!open)
     }
 
-    const formataData = (data:Date):string=> {
-        const dia = data.getDate();
-        const mes = data.getMonth() + 1;
-        const ano = data.getFullYear();
-      
-        const diaFormatado = dia < 10 ? '0' + dia : dia;
-        const mesFormatado = mes < 10 ? '0' + mes : mes;
-      
-        return `${diaFormatado}/${mesFormatado}/${ano}`;
-    }
 
     const handleAdd = ()=> {
         if(ValidaTexto(nomeTarefa)) {
@@ -91,7 +82,7 @@ export default function AddTarefa({props}:Props) {
 
     return (
         <>
-<main className='flex flex-col justify-center items-center sm:items-start p-6 gap-5'>
+<main className='flex flex-col justify-center items-center sm:items-start p-6 gap-5 pb-24'>
     <div className='flex justify-between items-center w-full'>
         <h2 className='font-bold tracking-wider text-2xl'>Tarefas</h2>
         <div className="hidden sm:block">

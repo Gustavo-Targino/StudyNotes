@@ -16,7 +16,7 @@ export default function Topo() {
        <>
         <header className="w-full h-24 p-5 flex justify-around items-center relative">
             <Link href='/' className='hover:underline'>
-                <h1 className="font-black tracking-widest text-xl">To.Do</h1>
+                <h1 className="font-black tracking-widest text-xl">StudyNotes</h1>
             </Link>
 
             <ul className='hidden justify-center items-center gap-5 sm:flex'>
