@@ -19,11 +19,13 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className={`${roboto.className} bg-stone-800 text-white`}>
+
+        <div className='h-full overflow-hidden'>
           <Topo/>
-
           {children}
-
+        </div>
           <Footer/>
+
         </body>
     </html>
   )

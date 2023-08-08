@@ -82,7 +82,7 @@ export default function AddTarefa({props}:Props) {
 
     return (
         <>
-<main className='flex flex-col justify-center items-center sm:items-start p-6 gap-5 pb-24'>
+<main className='flex flex-col justify-start items-center sm:items-start p-6 gap-5'>
     <div className='flex justify-between items-center w-full'>
         <h2 className='font-bold tracking-wider text-2xl'>Tarefas</h2>
         <div className="hidden sm:block">

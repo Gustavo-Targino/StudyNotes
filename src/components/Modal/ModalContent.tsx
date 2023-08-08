@@ -7,7 +7,7 @@ interface IModalPropsContent {
 export default function ModalContent({ children }:IModalPropsContent) {
     
     return (
-        <div className='p-4 py-8 text-zinc-500'>
+        <div className='p-4 py-8 text-zinc-500 h-full'>
 
                 {children}
                 

@@ -15,7 +15,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import useClass from "@/zustand/store";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import Link from "next/link";
+
 interface IAulas {
    aula: {id: number, titulo: string, youtubeLink:string, comentario: string},
    data: ITarefas,
@@ -73,10 +73,9 @@ export default function AulaPage({aula, data, params}:IAulas) {
         const dataToUp = [...data.aulas].map((item)=> {
             if(item.id.toString() === params.idAula) {
                 item.comentario = value
+            } 
                 return item
-            } else {
-                return item
-            }
+            
         }) 
 
         TarefasService.updateEspecific(data.id.toString(),{ aulas: dataToUp} ).then((res)=> {
@@ -89,6 +88,17 @@ export default function AulaPage({aula, data, params}:IAulas) {
         })
 
     }
+
+    useEffect(()=> {
+        TarefasService.getById(data.id).then((res)=> {
+            if(res instanceof FetchException) {
+                window.alert('Erro ao consultar tarefa!')
+            } else {
+                setServerComment(res.aulas[parseInt(params.idAula)-1].comentario)
+                setComment(res.aulas[parseInt(params.idAula)-1].comentario)
+            }
+        })
+    }, [])
 
     useEffect(()=> {
 

@@ -6,7 +6,7 @@ export default function Footer () {
 
     return (
 
-        <footer className="p-4 w-full flex flex-col justify-center items-center opacity-50 gap-2">
+        <footer className="p-4 w-full mt-auto h-fit flex flex-col justify-center items-center opacity-50 gap-2">
 
             <h3>Desenvolvido por Gustavo Targino</h3>
 

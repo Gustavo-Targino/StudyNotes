@@ -36,6 +36,8 @@ export default function HeaderTarefa({data, children}:ITarefaProps) {
     const[edit, setEdit] = useState(false)
 
     const[finished, setFinished] = useState(data.finished)
+    const[finishedIn, setFinishedIn] = useState(data.concluidaEm)
+
 
     const[nomeTarefa, setNomeTarefa] = useState(data.nome)
 
@@ -96,11 +98,15 @@ export default function HeaderTarefa({data, children}:ITarefaProps) {
         if(classes.done.length != data.aulas.length) {
             setModalContext('Pendente')
             setModalOpen(true)
+        } else if(data.aulas.length === 0) {
+            setModalContext('Sem aulas')
+            setModalOpen(true)
         } else {
             TarefasService.updateEspecific(data.id.toString(), {finished: !finished, concluidaEm: formataData(new Date)}).then((res)=> {
                 if(res instanceof FetchException) {
                     window.alert('Erro ao atualizar tarefa! Tente novamente')
                 } else {
+                    setFinishedIn(res.concluidaEm)
                     setFinished(res.finished)
                     if(res.finished) {
                         setModalContext('Sucesso')
@@ -148,7 +154,7 @@ export default function HeaderTarefa({data, children}:ITarefaProps) {
           {finished ? 
           <>
         <CheckCircleOutlineIcon sx={{color:'#059669'}} />
-            <p> Concluída em {data.concluidaEm}</p>
+            <p> Concluída em {finishedIn}</p>
           </>
         :
 
@@ -168,6 +174,7 @@ export default function HeaderTarefa({data, children}:ITarefaProps) {
             <h2 className='text-center'>
                 {modalContext === 'Excluir' && 'Tem certeza que deseja excluir esta tarefa?'}
                 {modalContext === 'Pendente' && 'Você possui aulas em aberto.'}
+                {modalContext === 'Sem aulas' && 'Você não possui aulas.'}
                 {modalContext === 'Sucesso' &&<> Parabéns! <CelebrationIcon/> </> }
             </h2>
         </Modal.Header>
@@ -177,6 +184,7 @@ export default function HeaderTarefa({data, children}:ITarefaProps) {
     <h2> 
         {modalContext === 'Excluir' && 'Você perderá todos os módulos, comentários e links relacionados a esta tarefa.'}
         {modalContext === 'Pendente' && 'Conclua as aulas restantes e tente novamente.'}
+        {modalContext === 'Sem aulas' && 'Cadastre uma aula e a conclua para poder finalizar esta tarefa.'}
         {modalContext === 'Sucesso' && 
         <>
        Você conclucuiu {data.nome} com sucesso!
@@ -186,7 +194,9 @@ export default function HeaderTarefa({data, children}:ITarefaProps) {
     <br></br>
     <br></br>
        Continue aproveitando a plataforma para explorar novos cursos, aprofundar-se em temas de interesse e continuar crescendo como estudante e como pessoa.
-
+    <br></br>
+    <br></br>
+        Sinta-se à vontade para me dar um feedback! O contato está no rodapé da página.
         </>
         }
         
@@ -195,10 +205,11 @@ export default function HeaderTarefa({data, children}:ITarefaProps) {
     </div>
 </Modal.Content>
 
-    {modalContext === 'Excluir' &&   <Modal.Actions close={()=>setModalOpen(false)} action={handleDelete} actionText='Excluir' />}
-    {modalContext === 'Pendente' &&   <Modal.Actions close={()=>setModalOpen(false)} />}
-    {modalContext === 'Sucesso' &&   <Modal.Actions close={()=>setModalOpen(false)} />}
-  
+    {modalContext === 'Excluir'  ?  <Modal.Actions close={()=>setModalOpen(false)} action={handleDelete} actionText='Excluir' />
+    
+:
+<Modal.Actions close={()=>setModalOpen(false)} />
+}
 
     </Modal.Root>
 
